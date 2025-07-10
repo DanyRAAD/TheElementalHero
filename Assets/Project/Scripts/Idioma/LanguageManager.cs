@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LanguageManager : MonoBehaviour
 {
     public static LanguageManager Instance;
+    public TMP_Dropdown languageDropdown;
 
     public Dictionary<string, string> spanish = new Dictionary<string, string>()
     {
@@ -33,7 +35,11 @@ public class LanguageManager : MonoBehaviour
         {"si", "Si"},
         {"no", "No"},
         {"guardar","Guardar" },
-        {"restablecer opciones","Restablecer opciones" }
+        {"restablecer opciones","Restablecer opciones" },
+        {"¿salir al escritorio?","¿Salir al Escritorio?" },
+        {"continuar","Continuar" },
+        {"nueva partida","Nueva Partida" },
+        {"cargar partida","Cargar Partida" }
     };
 
     public Dictionary<string, string> english = new Dictionary<string, string>()
@@ -63,7 +69,11 @@ public class LanguageManager : MonoBehaviour
         {"si", "Yes"},
         {"no", "No"},
         {"guardar","Save" },
-        {"restablecer opciones","Reset Options"}
+        {"restablecer opciones","Reset Options"},
+        {"¿salir al escritorio?","Exit to Desktop?" },
+        {"continuar","Continue" },
+        {"nueva partida","New Game"},
+        {"cargar partida","Load Game"}
     };
 
     private void Awake()
@@ -114,4 +124,23 @@ public class LanguageManager : MonoBehaviour
         PlayerPrefs.Save();
         ApplyLanguage();
     }
+
+    
+
+    public void ResetIdioma()
+    {
+        int defaultIndex = 0; // Español por defecto
+
+        PlayerPrefs.SetInt("language", defaultIndex);
+        PlayerPrefs.Save();
+
+        if (languageDropdown != null)
+        {
+            languageDropdown.value = defaultIndex; // Actualiza el Dropdown visualmente
+        }
+
+        ApplyLanguage(); // Aplica la traducción a todos los textos
+    }
+
+
 }
