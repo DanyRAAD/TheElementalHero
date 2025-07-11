@@ -10,7 +10,7 @@ public class LoadGameUIManager : MonoBehaviour
 
     // Simulación de partidas guardadas
     private List<string> partidasSimuladas = new List<string> {
-        "Partida 1", "Partida 2", "Partida 3"
+        "Partida 1", "Partida 2", "Partida 3", "Partida 4", "Partida 5"
     };
 
     void Start()
