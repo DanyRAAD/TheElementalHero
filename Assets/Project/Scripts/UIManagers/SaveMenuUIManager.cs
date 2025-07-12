@@ -5,6 +5,7 @@ public class SaveMenuUIManager : MonoBehaviour
 {
     public GameObject panelLoadGame;
     public GameObject panelSaveMenu;
+    public GameObject panelNewGame;
     public void RegresarAlMenuPrincipal()
     {
         SceneManager.LoadScene("MainMenu"); 
@@ -20,6 +21,11 @@ public class SaveMenuUIManager : MonoBehaviour
     {
         panelLoadGame.SetActive(false);
         panelSaveMenu.SetActive(true);
+    }
+
+    public void NewGame()
+    {
+        SceneManager.LoadScene("Cinematica");
     }
 
 }

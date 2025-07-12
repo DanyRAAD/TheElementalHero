@@ -39,7 +39,8 @@ public class LanguageManager : MonoBehaviour
         {"¿salir al escritorio?","¿Salir al Escritorio?" },
         {"continuar","Continuar" },
         {"nueva partida","Nueva Partida" },
-        {"cargar partida","Cargar Partida" }
+        {"cargar partida","Cargar Partida" },
+        {"selecciona personaje", "Selecciona Personaje" }
     };
 
     public Dictionary<string, string> english = new Dictionary<string, string>()
@@ -73,7 +74,8 @@ public class LanguageManager : MonoBehaviour
         {"¿salir al escritorio?","Exit to Desktop?" },
         {"continuar","Continue" },
         {"nueva partida","New Game"},
-        {"cargar partida","Load Game"}
+        {"cargar partida","Load Game"},
+        {"selecciona personaje","Select Character" }
     };
 
     private void Awake()
