@@ -853,11 +853,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a574270f3ddf90f4ea0775ae25457de0, type: 3}
   m_PrefabInstance: {fileID: 258774272}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1445716452 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: a574270f3ddf90f4ea0775ae25457de0, type: 3}
-  m_PrefabInstance: {fileID: 258774272}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1445716453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a574270f3ddf90f4ea0775ae25457de0, type: 3}
@@ -875,13 +870,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6210e672f120043bd2540b724bbd0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  rotationSmoothTime: 0.1
   gravity: -9.81
-  verticalVelocity: 0
-  groundCheckDistance: 0.2
-  cameraTransform: {fileID: 295143917}
-  animator: {fileID: 1445716452}
+  smoothTime: 0.1
+  speed: 5
+  runMultiplier: 2
+  turnSmoothTime: 0.1
 --- !u!143 &1445716455
 CharacterController:
   m_ObjectHideFlags: 0
