@@ -19,15 +19,17 @@ public class ThirdPersonController : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
 
-    // Variables para suavizar dirección y evitar cambios bruscos
     private Vector3 currentInputDir = Vector3.zero;
     private float lastDirChangeTime = 0f;
-    private float dirChangeDelay = 0.15f; // 150 ms
+    private float dirChangeDelay = 0.15f;
+
+    
 
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+        
     }
 
     void Update()
@@ -36,7 +38,7 @@ public class ThirdPersonController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         Vector3 inputDir = new Vector3(horizontal, 0f, vertical).normalized;
 
-        // Si el cambio es muy brusco y ocurrió muy rápido, mantener la dirección anterior
+        // Suaviza cambios bruscos de dirección
         if (Vector3.Angle(inputDir, currentInputDir) > 45f)
         {
             if (Time.time - lastDirChangeTime > dirChangeDelay)
@@ -55,7 +57,10 @@ public class ThirdPersonController : MonoBehaviour
             lastDirChangeTime = Time.time;
         }
 
-        // Mover solo si la magnitud es mayor que un umbral pequeño para evitar movimientos mínimos bruscos
+        // Checa si Ctrl está presionado (solo para animación)
+        bool isCrouching = Input.GetKey(KeyCode.LeftControl);
+
+        // Movimiento horizontal
         if (currentInputDir.magnitude >= 0.1f)
         {
             cameraForward = Camera.main.transform.forward;
@@ -79,16 +84,12 @@ public class ThirdPersonController : MonoBehaviour
             characterController.Move(moveDirection * finalSpeed * Time.deltaTime);
         }
 
-        // Gravedad
-        if (characterController.isGrounded && velocity.y < 0)
-            velocity.y = -2f;
-
-        velocity.y += gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
-
-        // Animaciones: uso damping para suavizar los parámetros
+        // Parámetros para Animator
         float animSpeed = currentInputDir.magnitude;
         if (Input.GetKey(KeyCode.LeftShift)) animSpeed *= runMultiplier;
+
+        playerAnimator.SetBool("IsCrouching", isCrouching);
+        
 
         playerAnimator.SetFloat("Speed", animSpeed, 0.15f, Time.deltaTime);
         playerAnimator.SetFloat("Direction", horizontal, 0.15f, Time.deltaTime);
@@ -102,4 +103,3 @@ public class ThirdPersonController : MonoBehaviour
             playerAnimator.SetTrigger("Right");
     }
 }
-
