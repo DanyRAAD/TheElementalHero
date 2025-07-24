@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonController : MonoBehaviour
 {
@@ -22,7 +23,13 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 currentInputDir = Vector3.zero;
     private float lastDirChangeTime = 0f;
     private float dirChangeDelay = 0.15f;
-    
+
+    //variables para doble salto 
+    public float jumpForce = 5f;
+    private int jumpCount = 0;
+    private int maxJumps = 2;
+    public LayerMask groundLayer;
+    private bool isGrounded;
 
     void Start()
     {
@@ -58,10 +65,10 @@ public class ThirdPersonController : MonoBehaviour
 
         // Checa si Ctrl está presionado (solo para animación)
         bool isCrouching = Input.GetKey(KeyCode.LeftControl);
+        playerAnimator.SetBool("IsCrouching", isCrouching);
 
-      
-
-        // Movimiento horizontal
+        // Movimiento horizontal (X-Z)
+        Vector3 horizontalMove = Vector3.zero;
         if (currentInputDir.magnitude >= 0.1f)
         {
             cameraForward = Camera.main.transform.forward;
@@ -82,36 +89,47 @@ public class ThirdPersonController : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
                 finalSpeed *= runMultiplier;
 
-            characterController.Move(moveDirection * finalSpeed * Time.deltaTime);
+            horizontalMove = moveDirection * finalSpeed;
         }
 
-        // Parámetros para Animator
-        float animSpeed = currentInputDir.magnitude;
-        if (Input.GetKey(KeyCode.LeftShift)) animSpeed *= runMultiplier;
-
-        // agacharse
-        playerAnimator.SetBool("IsCrouching", isCrouching);
-
-        //jump
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Comprobación de si está en el suelo
+        isGrounded = characterController.isGrounded;
+        if (isGrounded && velocity.y < 0)
         {
+            velocity.y = -2f;
+            jumpCount = 0;
+        }
+
+        // Saltar y doble salto
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
+        {
+            velocity.y = jumpForce;
+            jumpCount++;
             playerAnimator.SetTrigger("Jump");
         }
 
+        // Aplicar gravedad
+        velocity.y += gravity * Time.deltaTime;
 
+        // Mover personaje (sumando horizontal + vertical)
+        Vector3 totalMove = horizontalMove + new Vector3(0, velocity.y, 0);
+        characterController.Move(totalMove * Time.deltaTime);
 
+        // Animator
+        float animSpeed = currentInputDir.magnitude;
+        if (Input.GetKey(KeyCode.LeftShift)) animSpeed *= runMultiplier;
 
-
+        playerAnimator.SetFloat("VerticalSpeed", velocity.y);
+        playerAnimator.SetBool("IsGrounded", isGrounded);
         playerAnimator.SetFloat("Speed", animSpeed, 0.15f, Time.deltaTime);
         playerAnimator.SetFloat("Direction", horizontal, 0.15f, Time.deltaTime);
 
         var stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
-
         if (Input.GetKeyDown(KeyCode.A) && stateInfo.IsName("Idle"))
             playerAnimator.SetTrigger("Left");
 
         if (Input.GetKeyDown(KeyCode.D) && stateInfo.IsName("Idle"))
             playerAnimator.SetTrigger("Right");
     }
+
 }
