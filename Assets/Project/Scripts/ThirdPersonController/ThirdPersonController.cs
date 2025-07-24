@@ -22,7 +22,6 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 currentInputDir = Vector3.zero;
     private float lastDirChangeTime = 0f;
     private float dirChangeDelay = 0.15f;
-
     
 
     void Start()
@@ -60,6 +59,8 @@ public class ThirdPersonController : MonoBehaviour
         // Checa si Ctrl está presionado (solo para animación)
         bool isCrouching = Input.GetKey(KeyCode.LeftControl);
 
+      
+
         // Movimiento horizontal
         if (currentInputDir.magnitude >= 0.1f)
         {
@@ -88,8 +89,19 @@ public class ThirdPersonController : MonoBehaviour
         float animSpeed = currentInputDir.magnitude;
         if (Input.GetKey(KeyCode.LeftShift)) animSpeed *= runMultiplier;
 
+        // agacharse
         playerAnimator.SetBool("IsCrouching", isCrouching);
-        
+
+        //jump
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerAnimator.SetTrigger("Jump");
+        }
+
+
+
+
 
         playerAnimator.SetFloat("Speed", animSpeed, 0.15f, Time.deltaTime);
         playerAnimator.SetFloat("Direction", horizontal, 0.15f, Time.deltaTime);
