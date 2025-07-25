@@ -30,6 +30,10 @@ public class ThirdPersonController : MonoBehaviour
     private int maxJumps = 2;
     public LayerMask groundLayer;
     private bool isGrounded;
+    public Transform groundCheck;
+    public float groundDistance = 0.3f;
+  
+
 
     void Start()
     {
