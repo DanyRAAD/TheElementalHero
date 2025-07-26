@@ -535,7 +535,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a3f9ab9a6939c1c4999c4d19cbeb620f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e711a11a998aec64aaec7bfbfb6b06c8, type: 2}
+      objectReference: {fileID: 2100000, guid: 2074299041250aa4ba9d260a591cfbc9, type: 2}
     - target: {fileID: 919132149155446097, guid: a3f9ab9a6939c1c4999c4d19cbeb620f, type: 3}
       propertyPath: m_Name
       value: SM_Buildings_Stairs_1x2_01
@@ -1358,7 +1358,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: fc36e562c56cf424ba5a66dd15ffbafb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e711a11a998aec64aaec7bfbfb6b06c8, type: 2}
+      objectReference: {fileID: 2100000, guid: 2074299041250aa4ba9d260a591cfbc9, type: 2}
     - target: {fileID: 919132149155446097, guid: fc36e562c56cf424ba5a66dd15ffbafb, type: 3}
       propertyPath: m_Name
       value: Barandal (1)
@@ -1775,7 +1775,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: fc36e562c56cf424ba5a66dd15ffbafb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e711a11a998aec64aaec7bfbfb6b06c8, type: 2}
+      objectReference: {fileID: 2100000, guid: 2074299041250aa4ba9d260a591cfbc9, type: 2}
     - target: {fileID: 919132149155446097, guid: fc36e562c56cf424ba5a66dd15ffbafb, type: 3}
       propertyPath: m_Name
       value: Barandal
@@ -2688,7 +2688,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a3f9ab9a6939c1c4999c4d19cbeb620f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e711a11a998aec64aaec7bfbfb6b06c8, type: 2}
+      objectReference: {fileID: 2100000, guid: 2074299041250aa4ba9d260a591cfbc9, type: 2}
     - target: {fileID: 919132149155446097, guid: a3f9ab9a6939c1c4999c4d19cbeb620f, type: 3}
       propertyPath: m_Name
       value: SM_Buildings_Stairs_1x2_01 (2)
@@ -2773,7 +2773,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a3f9ab9a6939c1c4999c4d19cbeb620f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e711a11a998aec64aaec7bfbfb6b06c8, type: 2}
+      objectReference: {fileID: 2100000, guid: 2074299041250aa4ba9d260a591cfbc9, type: 2}
     - target: {fileID: 919132149155446097, guid: a3f9ab9a6939c1c4999c4d19cbeb620f, type: 3}
       propertyPath: m_Name
       value: SM_Buildings_Stairs_1x2_01 (3)
@@ -2947,7 +2947,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a3f9ab9a6939c1c4999c4d19cbeb620f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e711a11a998aec64aaec7bfbfb6b06c8, type: 2}
+      objectReference: {fileID: 2100000, guid: 2074299041250aa4ba9d260a591cfbc9, type: 2}
     - target: {fileID: 919132149155446097, guid: a3f9ab9a6939c1c4999c4d19cbeb620f, type: 3}
       propertyPath: m_Name
       value: SM_Buildings_Stairs_1x2_01 (1)
@@ -3842,6 +3842,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2167548448515863167, guid: 482663b763db48947a4690525cc62e82, type: 3}
   m_PrefabInstance: {fileID: 1154732427}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &525026617634657403
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1096782066124870110, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_Name
+      value: BridgeFloor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 137.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 117.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082467598821021724, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c0a45d37751e6ad4a8dca23b3f3b0f57, type: 3}
 --- !u!1001 &2908814975859214165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3974,6 +4031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorCombat
       objectReference: {fileID: 0}
+    - target: {fileID: 5876743979171744285, guid: 335220cdf12c4d64baac3bd3263e27d3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a1333e8b3ab1c942b5c00592af68e4e, type: 2}
     - target: {fileID: 7959021794475250851, guid: 335220cdf12c4d64baac3bd3263e27d3, type: 3}
       propertyPath: m_LocalScale.x
       value: 8.19
@@ -4159,3 +4220,4 @@ SceneRoots:
   - {fileID: 1666828615}
   - {fileID: 495071990}
   - {fileID: 894653850}
+  - {fileID: 525026617634657403}
