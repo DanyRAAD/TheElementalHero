@@ -40,7 +40,11 @@ public class LanguageManager : MonoBehaviour
         {"continuar","Continuar" },
         {"nueva partida","Nueva Partida" },
         {"cargar partida","Cargar Partida" },
-        {"selecciona personaje", "Selecciona Personaje" }
+        {"selecciona personaje", "Selecciona Personaje" },
+        {"presiona 'E' para recoger ","Presiona 'E' para recoger " },
+        {"presiona 'E' para colocar pieza", "Presiona 'E' para colocar pieza" },
+        {"piezas disponibles:","Piezas disponibles:" },
+        {"necesitas una pieza para colocar","Necesitas una pieza para colocar"}
     };
 
     public Dictionary<string, string> english = new Dictionary<string, string>()
@@ -75,7 +79,11 @@ public class LanguageManager : MonoBehaviour
         {"continuar","Continue" },
         {"nueva partida","New Game"},
         {"cargar partida","Load Game"},
-        {"selecciona personaje","Select Character" }
+        {"selecciona personaje","Select Character" },
+        {"presiona 'E' para recoger ","press 'E' to pick up" },
+        {"presiona 'E' para colocar pieza","Press 'E' to place piece" },
+        {"piezas disponibles:", "Available parts:"},
+        {"necesitas una pieza para colocar","You need a piece to place" }
     };
 
     private void Awake()

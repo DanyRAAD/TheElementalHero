@@ -1,0 +1,158 @@
+using UnityEngine;
+using TMPro;
+using System.Collections; // Necesario para usar IEnumerator
+
+public class BridgeInteraction : MonoBehaviour
+{
+    [Header("UI Textos con TextMeshPro")]
+    public GameObject uiTextoContainer;
+    public TextMeshProUGUI textoRecoger;
+    public TextMeshProUGUI textoColocar;
+    public TextMeshProUGUI textoNecesitasPieza;
+    public TextMeshProUGUI uiContadorPiezas;
+
+    [Header("Animación")]
+    private Animator playerAnimator;
+    public string triggerRecolectarPieza = "RecolectarPieza";
+    public string triggerColocarPieza = "RecolectarPieza";
+
+    [Header("Colocación")]
+    public GameObject piezaPrefab;
+    public string tagPieza = "PiezaPuente";
+    public string tagHueco = "BridgeSlot";
+
+    private int piezasRecolectadas = 0;
+    private GameObject piezaActual = null;
+    private GameObject huecoActual = null;
+
+    private string textoBase; // Guarda el texto base para soporte de idioma
+
+    void Awake()
+    {
+        if (playerAnimator == null)
+            playerAnimator = GetComponent<Animator>();
+
+        // Guarda el texto base que tienes en el Inspector (ej: "Piezas disponibles: 0")
+        if (uiContadorPiezas != null)
+            textoBase = uiContadorPiezas.text;
+    }
+
+    void Start()
+    {
+        ActualizarTextoPiezas(); // Muestra el texto con el número inicial
+    }
+
+    void Update()
+    {
+        if (piezaActual != null && Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(RecolectarPiezaConAnimacion());
+        }
+
+        if (huecoActual != null && piezasRecolectadas > 0 && Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(ColocarPiezaConAnimacion());
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(tagPieza))
+        {
+            piezaActual = other.gameObject;
+            MostrarMensaje("recoger");
+        }
+        else if (other.CompareTag(tagHueco))
+        {
+            huecoActual = other.gameObject;
+            if (piezasRecolectadas > 0)
+                MostrarMensaje("colocar");
+            else
+                MostrarMensaje("necesitas");
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(tagPieza)) piezaActual = null;
+        if (other.CompareTag(tagHueco)) huecoActual = null;
+
+        OcultarMensajes();
+    }
+
+    IEnumerator RecolectarPiezaConAnimacion()
+    {
+        OcultarMensajes();
+
+        if (playerAnimator != null)
+            playerAnimator.SetTrigger(triggerRecolectarPieza);
+
+        yield return new WaitForSeconds(0.9f); // Ajusta según la duración real de la animación
+
+        if (piezaActual != null)
+        {
+            piezaActual.SetActive(false);
+            piezaActual = null;
+
+            piezasRecolectadas++;
+            ActualizarTextoPiezas();
+        }
+    }
+
+    IEnumerator ColocarPiezaConAnimacion()
+    {
+        OcultarMensajes();
+
+        if (playerAnimator != null && triggerColocarPieza != "")
+            playerAnimator.SetTrigger(triggerColocarPieza);
+
+        yield return new WaitForSeconds(0.9f); // Ajusta según la animación
+
+        if (huecoActual != null)
+        {
+            Instantiate(piezaPrefab, huecoActual.transform.position, huecoActual.transform.rotation);
+            Destroy(huecoActual);
+            huecoActual = null;
+
+            piezasRecolectadas--;
+            ActualizarTextoPiezas();
+        }
+    }
+
+    // Actualiza el texto del contador sin perder el texto base
+    void ActualizarTextoPiezas()
+    {
+        if (uiContadorPiezas == null || string.IsNullOrEmpty(textoBase))
+            return;
+
+        // Suponiendo que textoBase es algo tipo "Piezas disponibles: 0"
+        // Separamos en partes por ":" y ponemos el número actualizado
+        string[] partes = textoBase.Split(':');
+
+        if (partes.Length > 1)
+            uiContadorPiezas.text = partes[0] + ": " + piezasRecolectadas;
+        else
+            uiContadorPiezas.text = textoBase + " " + piezasRecolectadas;
+
+        // Opcional: ocultar texto si no hay piezas (puedes modificar esto según prefieras)
+        uiContadorPiezas.gameObject.SetActive(piezasRecolectadas > 0);
+    }
+
+    void MostrarMensaje(string tipo)
+    {
+        if (uiTextoContainer != null) uiTextoContainer.SetActive(true);
+
+        textoRecoger.gameObject.SetActive(tipo == "recoger");
+        textoColocar.gameObject.SetActive(tipo == "colocar");
+        textoNecesitasPieza.gameObject.SetActive(tipo == "necesitas");
+    }
+
+    void OcultarMensajes()
+    {
+        if (uiTextoContainer != null) uiTextoContainer.SetActive(false);
+
+        textoRecoger.gameObject.SetActive(false);
+        textoColocar.gameObject.SetActive(false);
+        textoNecesitasPieza.gameObject.SetActive(false);
+    }
+}
