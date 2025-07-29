@@ -25,21 +25,21 @@ public class BridgeInteraction : MonoBehaviour
     private GameObject piezaActual = null;
     private GameObject huecoActual = null;
 
-    private string textoBase; // Guarda el texto base para soporte de idioma
+    private string textoBase; 
 
     void Awake()
     {
         if (playerAnimator == null)
             playerAnimator = GetComponent<Animator>();
 
-        // Guarda el texto base que tienes en el Inspector (ej: "Piezas disponibles: 0")
+        
         if (uiContadorPiezas != null)
             textoBase = uiContadorPiezas.text;
     }
 
     void Start()
     {
-        ActualizarTextoPiezas(); // Muestra el texto con el número inicial
+        ActualizarTextoPiezas(); 
     }
 
     void Update()
@@ -87,7 +87,7 @@ public class BridgeInteraction : MonoBehaviour
         if (playerAnimator != null)
             playerAnimator.SetTrigger(triggerRecolectarPieza);
 
-        yield return new WaitForSeconds(0.9f); // Ajusta según la duración real de la animación
+        yield return new WaitForSeconds(0.9f); 
 
         if (piezaActual != null)
         {
@@ -106,7 +106,7 @@ public class BridgeInteraction : MonoBehaviour
         if (playerAnimator != null && triggerColocarPieza != "")
             playerAnimator.SetTrigger(triggerColocarPieza);
 
-        yield return new WaitForSeconds(0.9f); // Ajusta según la animación
+        yield return new WaitForSeconds(0.9f); 
 
         if (huecoActual != null)
         {
@@ -119,14 +119,13 @@ public class BridgeInteraction : MonoBehaviour
         }
     }
 
-    // Actualiza el texto del contador sin perder el texto base
+    
     void ActualizarTextoPiezas()
     {
         if (uiContadorPiezas == null || string.IsNullOrEmpty(textoBase))
             return;
 
-        // Suponiendo que textoBase es algo tipo "Piezas disponibles: 0"
-        // Separamos en partes por ":" y ponemos el número actualizado
+        
         string[] partes = textoBase.Split(':');
 
         if (partes.Length > 1)
@@ -134,7 +133,7 @@ public class BridgeInteraction : MonoBehaviour
         else
             uiContadorPiezas.text = textoBase + " " + piezasRecolectadas;
 
-        // Opcional: ocultar texto si no hay piezas (puedes modificar esto según prefieras)
+        
         uiContadorPiezas.gameObject.SetActive(piezasRecolectadas > 0);
     }
 

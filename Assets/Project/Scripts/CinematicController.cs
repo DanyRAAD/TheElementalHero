@@ -70,8 +70,8 @@ public class CinematicController : MonoBehaviour
         }
         else if (!isMainCinematic)
         {
-            // Después de la cinemática de personaje, carga el primer nivel
-            SceneManager.LoadScene("RuinasAntiguas"); // Cambia por tu escena real
+            
+            SceneManager.LoadScene("RuinasAntiguas");
         }
     }
 
