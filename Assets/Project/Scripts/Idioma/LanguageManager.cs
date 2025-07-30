@@ -48,7 +48,8 @@ public class LanguageManager : MonoBehaviour
         {"guardar juego","Guardar Juego" },
         {"salir al menu","Salir al Menú" },
         {"salir del juego","Salir del juego" },
-        {"salir sin guardar","¿Salir sin guardar?"}
+        {"salir sin guardar","¿Salir sin guardar?"},
+        {"abrir cofre","Presiona 'F' Para abrir cofre" }
     };
 
     public Dictionary<string, string> english = new Dictionary<string, string>()
@@ -91,7 +92,8 @@ public class LanguageManager : MonoBehaviour
         {"guardar juego","Save Game" },
         {"salir al menu","Exit to Menu" },
         {"salir del juego","Exit the game" },
-        {"salir sin guardar","Exit without saving?" }
+        {"salir sin guardar","Exit without saving?" },
+        {"abrir cofre","Press to open chest" }
     };
 
     private void Awake()
