@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: a03a6d2a5e17a3f4b8d8c88d8c0e46d5
-AssetOrigin:
-  serializedVersion: 1
-  productId: 109065
-  packageName: Altar Ruins Free
-  packageVersion: 2.0
-  assetPath: Assets/Altar_Ruins_FREE/Art/Meshes/New/Rubble_7.fbx
-  uploadId: 707405
+guid: 299a1a15bb4c5124b8eba10d85c66903
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -40,7 +33,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 5
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +88,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.049999997
+    globalScale: 0.099999994
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
