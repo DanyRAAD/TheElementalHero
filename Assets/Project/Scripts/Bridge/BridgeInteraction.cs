@@ -85,9 +85,13 @@ public class BridgeInteraction : MonoBehaviour
         OcultarMensajes();
 
         if (playerAnimator != null)
+        {
+            playerAnimator.speed = 5.0f; // Velocidad aumentada 
             playerAnimator.SetTrigger(triggerRecolectarPieza);
+        }
 
-        yield return new WaitForSeconds(0.9f); 
+
+        yield return new WaitForSeconds(0.9f / playerAnimator.speed);
 
         if (piezaActual != null)
         {
@@ -97,6 +101,9 @@ public class BridgeInteraction : MonoBehaviour
             piezasRecolectadas++;
             ActualizarTextoPiezas();
         }
+        // Restablecer la velocidad al terminar
+        if (playerAnimator != null)
+            playerAnimator.speed = 1.0f;
     }
 
     IEnumerator ColocarPiezaConAnimacion()
