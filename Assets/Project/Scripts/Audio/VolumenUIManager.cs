@@ -3,28 +3,37 @@ using UnityEngine.UI;
 
 public class VolumenUIManager : MonoBehaviour
 {
-    public Slider efectosSlider;
+    public Slider musicSlider;
+    public Slider sfxSlider;
 
     void Start()
     {
-        float savedVolume = PlayerPrefs.GetFloat("ui_volume", 0.3f);
-        efectosSlider.value = savedVolume;
-        UIAudioManager.Instance?.SetVolume(savedVolume);
+        // Inicializar sliders con valores guardados
+        musicSlider.value = PlayerPrefs.GetFloat("music_volume", 0.3f);
+        sfxSlider.value = PlayerPrefs.GetFloat("sfx_volume", 0.3f);
 
-        efectosSlider.onValueChanged.AddListener(delegate {
-            UIAudioManager.Instance?.SetVolume(efectosSlider.value);
+        musicSlider.onValueChanged.AddListener((value) => {
+            UIAudioManager.Instance?.SetMusicVolume(value);
         });
+
+        sfxSlider.onValueChanged.AddListener((value) => {
+            UIAudioManager.Instance?.SetSFXVolume(value);
+        });
+
+        // Aplicar valores iniciales
+        UIAudioManager.Instance?.SetMusicVolume(musicSlider.value);
+        UIAudioManager.Instance?.SetSFXVolume(sfxSlider.value);
     }
 
     public void GuardarVolumen()
     {
-        UIAudioManager.Instance?.SaveVolume();
+        UIAudioManager.Instance?.SaveVolumes();
     }
 
     public void RestablecerVolumen()
     {
-        efectosSlider.value = 0.3f;
-        UIAudioManager.Instance?.ResetVolume();
-        UIAudioManager.Instance?.SaveVolume();
+        musicSlider.value = 0.3f;
+        sfxSlider.value = 0.3f;
+        UIAudioManager.Instance?.ResetVolumes();
     }
 }

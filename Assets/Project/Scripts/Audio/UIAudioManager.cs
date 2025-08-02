@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class UIAudioManager : MonoBehaviour
 {
     public static UIAudioManager Instance;
 
-    private AudioSource audioSource;
+    [Header("Audio Sources")]
+    public AudioSource musicAudioSource;
+    public AudioSource sfxAudioSource;
 
-    private const string VOLUME_KEY = "ui_volume";
+    private const string MUSIC_VOLUME_KEY = "music_volume";
+    private const string SFX_VOLUME_KEY = "sfx_volume";
     private const float DEFAULT_VOLUME = 0.3f;
 
     void Awake()
@@ -14,8 +19,7 @@ public class UIAudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // si quieres mantener entre escenas
-            audioSource = GetComponent<AudioSource>();
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -25,34 +29,44 @@ public class UIAudioManager : MonoBehaviour
 
     void Start()
     {
-        float savedVolume = PlayerPrefs.GetFloat(VOLUME_KEY, DEFAULT_VOLUME);
-        audioSource.volume = savedVolume;
+        float musicVolume = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, DEFAULT_VOLUME);
+        float sfxVolume = PlayerPrefs.GetFloat(SFX_VOLUME_KEY, DEFAULT_VOLUME);
+
+        musicAudioSource.volume = musicVolume;
+        sfxAudioSource.volume = sfxVolume;
     }
 
+    // Para efectos de UI
     public void PlaySound(AudioClip clip)
     {
         if (clip != null)
-            audioSource.PlayOneShot(clip);
+            sfxAudioSource.PlayOneShot(clip);
     }
 
-    public void SetVolume(float value)
+    public void SetMusicVolume(float value)
     {
-        audioSource.volume = value;
+        musicAudioSource.volume = value;
     }
 
-    public void SaveVolume()
+    public void SetSFXVolume(float value)
     {
-        PlayerPrefs.SetFloat(VOLUME_KEY, audioSource.volume);
+        sfxAudioSource.volume = value;
+    }
+
+    public void SaveVolumes()
+    {
+        PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, musicAudioSource.volume);
+        PlayerPrefs.SetFloat(SFX_VOLUME_KEY, sfxAudioSource.volume);
         PlayerPrefs.Save();
     }
 
-    public void ResetVolume()
+    public void ResetVolumes()
     {
-        audioSource.volume = DEFAULT_VOLUME;
+        musicAudioSource.volume = DEFAULT_VOLUME;
+        sfxAudioSource.volume = DEFAULT_VOLUME;
+        SaveVolumes();
     }
 
-    public float GetCurrentVolume()
-    {
-        return audioSource.volume;
-    }
+    public float GetMusicVolume() => musicAudioSource.volume;
+    public float GetSFXVolume() => sfxAudioSource.volume;
 }
