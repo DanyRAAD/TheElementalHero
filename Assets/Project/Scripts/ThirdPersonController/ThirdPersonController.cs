@@ -39,7 +39,10 @@ public class ThirdPersonController : MonoBehaviour
     {
         playerAnimator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-        
+        Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor al centro
+        Cursor.visible = false;                   // Oculta el cursor
+
+
     }
 
     void Update()

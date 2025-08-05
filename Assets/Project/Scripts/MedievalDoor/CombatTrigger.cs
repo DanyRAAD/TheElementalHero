@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CombatTrigger : MonoBehaviour
 {
-    public GameObject puerta; // Asigna aquí la puerta que se cerrará
-    public Animator animPuerta; // Asigna el Animator si tiene animación de cierre
+    public GameObject puerta; 
+    public Animator animPuerta; 
 
     private bool yaCerro = false;
 
@@ -13,15 +13,15 @@ public class CombatTrigger : MonoBehaviour
         {
             if (animPuerta != null)
             {
-                animPuerta.SetTrigger("Cerrar"); // Asegúrate de tener un trigger "Cerrar" en el Animator
+                animPuerta.SetTrigger("Cerrar"); 
             }
             else if (puerta != null)
             {
-                puerta.SetActive(false); // Alternativa simple sin animación
+                puerta.SetActive(false);
             }
 
             yaCerro = true;
-            gameObject.SetActive(false); // Desactiva este trigger para no volver a activarse
+            gameObject.SetActive(false); 
         }
     }
 }

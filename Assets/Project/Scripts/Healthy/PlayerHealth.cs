@@ -10,7 +10,9 @@ public class PlayerHealth : MonoBehaviour
     public float currentShield;
 
     public HealthBar healthBar;
-    public HealthBar shieldBar; 
+    public HealthBar shieldBar;
+    private Animator animator;
+
 
     void Start()
     {
@@ -19,6 +21,9 @@ public class PlayerHealth : MonoBehaviour
 
         healthBar.SetMaxHealth((int)maxHealth);
         shieldBar.SetMaxHealth((int)maxShield);
+
+        animator = GetComponent<Animator>(); 
+
     }
 
     public void TakeDamage(float amount)
@@ -45,6 +50,13 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        animator.SetTrigger("IsDead");
+        StartCoroutine(RestartAfterDelay(3f));
+    }
+
+    private System.Collections.IEnumerator RestartAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

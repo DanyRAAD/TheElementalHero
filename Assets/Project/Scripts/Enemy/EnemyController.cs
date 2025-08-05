@@ -4,92 +4,179 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform patrolPointA; 
-    public Transform patrolPointB; 
-    private float waitTimeAtPoint = 0.1f;
+    [Header("Patrol Points")]
+    public Transform patrolPointA;
+    public Transform patrolPointB;
 
-    private Transform currentTarget;
+    [Header("Combat")]
+    public float meleeAttackRange = 2f;
+    public float rockThrowRange = 10f;
+    public float meleeAttackDamage = 10f;
+    public float rockThrowDamage = 15f;
+
+    [Header("References")]
+    public GameObject rockPrefab;
+    public Transform rockSpawnPoint;
+
     private NavMeshAgent agent;
-    private GameObject player;
     private Animator animator;
-    private EnemyState currentState;
+    private GameObject player;
+
+    private Transform currentPatrolTarget;
     private bool isWaiting = false;
+    private bool isDead = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
-        currentTarget = patrolPointA;
-        ChangeState(EnemyState.PATROL);
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        currentPatrolTarget = patrolPointA;
+        agent.SetDestination(currentPatrolTarget.position);
     }
 
     void Update()
     {
+        if (isDead) return;
+
         animator.SetFloat("Speed", agent.velocity.magnitude);
 
-        if (currentState == EnemyState.PATROL)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        // Estado de combate basado en distancia
+        if (distanceToPlayer <= meleeAttackRange)
         {
+            agent.isStopped = true;
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+            MeleeAttack();
+        }
+        else if (distanceToPlayer <= rockThrowRange)
+        {
+            agent.isStopped = true;
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+            RockThrowAttack();
+        }
+        else
+        {
+            // Volver a patrullar
+            agent.isStopped = false;
             Patrol();
-        }
-
-        // Detectar jugador con SphereCast
-        Ray ray = new Ray(transform.position + Vector3.up, player.transform.position - transform.position);
-        if (Physics.SphereCast(ray, 2f, out RaycastHit hit, 10f))
-        {
-            if (hit.transform.CompareTag("Player"))
-            {
-                ChangeState(EnemyState.CHASE);
-            }
-        }
-
-        if (currentState == EnemyState.CHASE)
-        {
-            ChasePlayer();
         }
     }
 
     void Patrol()
     {
-        if (!isWaiting)
-        {
-            agent.SetDestination(currentTarget.position);
+        if (isWaiting) return;
 
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        agent.SetDestination(currentPatrolTarget.position);
+
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            StartCoroutine(WaitAndSwitchPatrolPoint());
+        }
+    }
+
+    IEnumerator WaitAndSwitchPatrolPoint()
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(1f);
+        currentPatrolTarget = currentPatrolTarget == patrolPointA ? patrolPointB : patrolPointA;
+        isWaiting = false;
+    }
+
+    private float lastMeleeAttackTime = 0f;
+    private float meleeAttackCooldown = 1.5f;
+
+    void MeleeAttack()
+    {
+        if (Time.time - lastMeleeAttackTime < meleeAttackCooldown)
+            return;
+
+        lastMeleeAttackTime = Time.time;
+
+        animator.SetTrigger("IsMeleeAttack");
+
+        // Detectar jugador en rango y hacer daño
+        Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * meleeAttackRange, 1.5f);
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("Player"))
             {
-                StartCoroutine(WaitAndSwitchPoint());
+                var playerHealth = hit.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(meleeAttackDamage);
+                }
             }
         }
     }
 
-    IEnumerator WaitAndSwitchPoint()
-    {
-        isWaiting = true;
-        yield return new WaitForSeconds(waitTimeAtPoint);
+    private float lastRockThrowTime = 0f;
+    private float rockThrowCooldown = 3f;
 
-        currentTarget = (currentTarget == patrolPointA) ? patrolPointB : patrolPointA;
-        isWaiting = false;
+    void RockThrowAttack()
+    {
+        if (Time.time - lastRockThrowTime < rockThrowCooldown)
+            return;
+
+        lastRockThrowTime = Time.time;
+
+        animator.SetTrigger("IsGolemMagicAttack");
+
+        // Lanzar roca con retraso para sincronizar con animación
+        StartCoroutine(SpawnAndThrowRock());
     }
 
-    void ChasePlayer()
+    IEnumerator SpawnAndThrowRock()
     {
-        agent.SetDestination(player.transform.position);
-    }
+        yield return new WaitForSeconds(0.5f);
 
-    public void ChangeState(EnemyState newState)
-    {
-        currentState = newState;
-        if (newState == EnemyState.CHASE)
+        if (rockPrefab != null && rockSpawnPoint != null)
         {
-            StopAllCoroutines();
-            isWaiting = false;
+            GameObject rock = Instantiate(rockPrefab, rockSpawnPoint.position, rockSpawnPoint.rotation);
+
+            RockProjectile projectile = rock.GetComponent<RockProjectile>();
+            if (projectile != null)
+            {
+                projectile.SetTarget(player.transform);
+            }
+
+            // Evitar colisión con el golem
+            Collider rockCollider = rock.GetComponent<Collider>();
+            Collider golemCollider = GetComponent<Collider>();
+            if (rockCollider != null && golemCollider != null)
+            {
+                Physics.IgnoreCollision(rockCollider, golemCollider);
+            }
         }
     }
-}
 
-public enum EnemyState
-{
-    PATROL,
-    CHASE,
-    ATTACK
+
+
+
+
+    public void Die()
+    {
+        isDead = true;
+        agent.isStopped = true;
+        animator.SetTrigger("IsDying");
+        StartCoroutine(DeactivateAfterDeath(3f));
+    }
+
+    IEnumerator DeactivateAfterDeath(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
+    }
+
+    // Opcional: para debug y ver alcance de ataques en editor
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + transform.forward * meleeAttackRange, 1.5f);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, rockThrowRange);
+    }
 }

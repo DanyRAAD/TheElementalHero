@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PiezaPuente
   - BridgeSlot
+  - Enemy
   layers:
   - Default
   - TransparentFX

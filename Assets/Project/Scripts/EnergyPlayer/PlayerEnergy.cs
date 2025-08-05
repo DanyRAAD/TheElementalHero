@@ -16,6 +16,7 @@ public class PlayerEnergy : MonoBehaviour
 
     void Update()
     {
+        
         RegenerateEnergy();
     }
 
