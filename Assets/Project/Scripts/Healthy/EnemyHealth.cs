@@ -50,7 +50,7 @@ public class EnemyHealth : MonoBehaviour
                 anim.SetTrigger("IsDying");
             }
             // Desactivar el gameobject después de un tiempo para que se vea la animación
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 3.724f);
         }
     }
 }

@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour
     private bool isWaiting = false;
     private bool isDead = false;
 
+    public GameObject bloqueoZona;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -160,8 +162,15 @@ public class EnemyController : MonoBehaviour
     {
         isDead = true;
         agent.isStopped = true;
-        animator.SetTrigger("IsDying");
-        StartCoroutine(DeactivateAfterDeath(3f));
+        animator.SetTrigger("IsDead");
+
+       
+        if (bloqueoZona != null)
+        {
+            bloqueoZona.SetActive(false); 
+        }
+
+        StartCoroutine(DeactivateAfterDeath(3.724f));
     }
 
     IEnumerator DeactivateAfterDeath(float delay)

@@ -43,7 +43,7 @@ public class PlayerCombat : MonoBehaviour
         Collider[] hitEnemies = Physics.OverlapSphere(transform.position + transform.forward * attackRange, 1.5f, enemyLayer);
         foreach (Collider enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyHealth>()?.TakeDamage(meleeDamage);
+            enemy.GetComponent<EnemyHealth>()?.TakeDamage(meleeDamage, true);
         }
     }
 
@@ -60,7 +60,7 @@ public class PlayerCombat : MonoBehaviour
             Collider[] hitEnemies = Physics.OverlapSphere(transform.position + transform.forward * attackRange, 2f, enemyLayer);
             foreach (Collider enemy in hitEnemies)
             {
-                enemy.GetComponent<EnemyHealth>()?.TakeDamage(magicDamage);
+                enemy.GetComponent<EnemyHealth>()?.TakeDamage(magicDamage, false);
             }
 
             // Futuro: efecto visual del hechizo
