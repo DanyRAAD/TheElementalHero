@@ -179,7 +179,7 @@ public class EnemyController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // Opcional: para debug y ver alcance de ataques en editor
+    // para debug y ver alcance de ataques en editor
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
