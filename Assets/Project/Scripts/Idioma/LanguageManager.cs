@@ -49,7 +49,8 @@ public class LanguageManager : MonoBehaviour
         {"salir al menu","Salir al Menú" },
         {"salir del juego","Salir del juego" },
         {"salir sin guardar","¿Salir sin guardar?"},
-        {"abrir cofre","Presiona 'F' Para abrir cofre" }
+        {"abrir cofre","Presiona 'F' Para abrir cofre" },
+        {"abrir puerta","Presiona F para abrir puerta" }
     };
 
     public Dictionary<string, string> english = new Dictionary<string, string>()
@@ -86,14 +87,15 @@ public class LanguageManager : MonoBehaviour
         {"cargar partida","Load Game"},
         {"selecciona personaje","Select Character" },
         {"presiona 'E' para recoger ","press 'E' to pick up" },
-        {"presiona 'E' para colocar pieza","Press 'E' to place piece" },
+        {"presiona 'E' para colocar pieza","Press E to place piece" },
         {"piezas disponibles:", "Available parts:"},
         {"necesitas","You need a piece to place" },
         {"guardar juego","Save Game" },
         {"salir al menu","Exit to Menu" },
         {"salir del juego","Exit the game" },
         {"salir sin guardar","Exit without saving?" },
-        {"abrir cofre","Press to open chest" }
+        {"abrir cofre","Press F to open chest" },
+        {"abrir puerta","Press F to open door" }
     };
 
     private void Awake()
