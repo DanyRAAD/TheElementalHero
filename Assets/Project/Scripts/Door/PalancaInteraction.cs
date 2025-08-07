@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI; // Para manejar el texto en pantalla
+using UnityEngine.UI; 
 
 public class PalancaInteraction : MonoBehaviour
 {
@@ -31,7 +31,7 @@ public class PalancaInteraction : MonoBehaviour
 
     IEnumerator EsperarYActivarPuerta()
     {
-        // Espera la duración exacta de la animación de la palanca
+       
         yield return new WaitForSeconds(animadorPalanca.GetCurrentAnimatorStateInfo(0).length);
 
         animadorPuerta.SetTrigger("Abrir");
