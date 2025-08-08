@@ -50,7 +50,9 @@ public class LanguageManager : MonoBehaviour
         {"salir del juego","Salir del juego" },
         {"salir sin guardar","¿Salir sin guardar?"},
         {"abrir cofre","Presiona 'F' Para abrir cofre" },
-        {"abrir puerta","Presiona F para abrir puerta" }
+        {"abrir puerta","Presiona F para abrir puerta" },
+        {"llave","¡Ya tienes la llave en tu inventario!" },
+        {"necesitas llave","Necesitas una llave" }
     };
 
     public Dictionary<string, string> english = new Dictionary<string, string>()
@@ -95,7 +97,9 @@ public class LanguageManager : MonoBehaviour
         {"salir del juego","Exit the game" },
         {"salir sin guardar","Exit without saving?" },
         {"abrir cofre","Press F to open chest" },
-        {"abrir puerta","Press F to open door" }
+        {"abrir puerta","Press F to open door" },
+        {"llave","You now have the key in your inventory!" },
+        {"necesitas llave","You need a key" }
     };
 
     private void Awake()

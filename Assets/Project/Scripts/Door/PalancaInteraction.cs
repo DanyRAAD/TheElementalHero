@@ -1,15 +1,19 @@
 using UnityEngine;
-using System.Collections;
-using UnityEngine.UI; 
 
 public class PalancaInteraction : MonoBehaviour
 {
-    public GameObject textoInteraccionUI;
+    public GameObject textoInteraccionUI;   
     public Animator animadorPalanca;
     public Animator animadorPuerta;
 
     private bool jugadorCerca = false;
     private bool yaActivada = false;
+
+    void Start()
+    {
+        if (textoInteraccionUI != null)
+            textoInteraccionUI.SetActive(false);  
+    }
 
     void Update()
     {
@@ -24,25 +28,33 @@ public class PalancaInteraction : MonoBehaviour
         yaActivada = true;
         textoInteraccionUI.SetActive(false);
         animadorPalanca.SetTrigger("Activar");
-
-        // Esperamos que la animación de la palanca termine para abrir la puerta
         StartCoroutine(EsperarYActivarPuerta());
     }
 
-    IEnumerator EsperarYActivarPuerta()
+    System.Collections.IEnumerator EsperarYActivarPuerta()
     {
-       
-        yield return new WaitForSeconds(animadorPalanca.GetCurrentAnimatorStateInfo(0).length);
-
+        float duracionAnimacion = animadorPalanca.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(duracionAnimacion + 0.1f);
         animadorPuerta.SetTrigger("Abrir");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !yaActivada)
+        if (other.CompareTag("Player"))
         {
-            textoInteraccionUI.SetActive(true);
             jugadorCerca = true;
+            if (textoInteraccionUI != null)
+                textoInteraccionUI.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            jugadorCerca = true;
+            if (textoInteraccionUI != null && !textoInteraccionUI.activeSelf)
+                textoInteraccionUI.SetActive(true);
         }
     }
 
@@ -50,8 +62,9 @@ public class PalancaInteraction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            textoInteraccionUI.SetActive(false);
             jugadorCerca = false;
+            if (textoInteraccionUI != null)
+                textoInteraccionUI.SetActive(false);
         }
     }
 }
