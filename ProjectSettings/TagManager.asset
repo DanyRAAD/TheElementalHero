@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Llave
   - Puerta
+  - Destructible
   layers:
   - Default
   - TransparentFX

@@ -28,6 +28,13 @@ public class MagicProjectile : MonoBehaviour
             enemyHealth.TakeDamage(damage, false); // false = ataque mágico
         }
 
+        // Daño a objetos destructibles
+        DestructibleObject destructible = other.GetComponent<DestructibleObject>();
+        if (destructible != null)
+        {
+            destructible.TakeDamage(damage);
+        }
+
         // Destruir siempre que colisione con algo
         Destroy(gameObject);
     }
