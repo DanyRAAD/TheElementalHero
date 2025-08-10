@@ -10,6 +10,8 @@ TagManager:
   - Llave
   - Puerta
   - Destructible
+  - CofreComun
+  - CofreSupremo
   layers:
   - Default
   - TransparentFX

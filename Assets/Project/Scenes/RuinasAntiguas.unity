@@ -1766,6 +1766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 110369244}
   - component: {fileID: 110369246}
+  - component: {fileID: 110369247}
   - component: {fileID: 110369245}
   m_Layer: 5
   m_Name: ShopText
@@ -1892,6 +1893,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110369243}
   m_CullTransparentMesh: 1
+--- !u!114 &110369247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110369243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fd5884bdd7a054faab151aaccef3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationKey: tienda
 --- !u!4 &112169983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2167548448515863167, guid: 482663b763db48947a4690525cc62e82, type: 3}
@@ -3613,6 +3627,10 @@ PrefabInstance:
       propertyPath: textoMonedasHUD
       value: 
       objectReference: {fileID: 357951906}
+    - target: {fileID: 4012136352731152151, guid: 81d99bda54ed80c47aa609f38fdc1aa7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a6c971b45205324f8dccca91c339818, type: 2}
     - target: {fileID: 4540631044471807421, guid: 81d99bda54ed80c47aa609f38fdc1aa7, type: 3}
       propertyPath: mensajeUI
       value: 
@@ -3673,6 +3691,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: cofrenormal (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7711271411385676684, guid: 81d99bda54ed80c47aa609f38fdc1aa7, type: 3}
+      propertyPath: m_TagString
+      value: CofreSupremo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915537803646701811, guid: 81d99bda54ed80c47aa609f38fdc1aa7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a6c971b45205324f8dccca91c339818, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36163,7 +36189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6937831314443004214, guid: 81d99bda54ed80c47aa609f38fdc1aa7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.93
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 6937831314443004214, guid: 81d99bda54ed80c47aa609f38fdc1aa7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -36201,6 +36227,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: cofrenormal
       objectReference: {fileID: 0}
+    - target: {fileID: 7711271411385676684, guid: 81d99bda54ed80c47aa609f38fdc1aa7, type: 3}
+      propertyPath: m_TagString
+      value: CofreComun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915537803646701811, guid: 81d99bda54ed80c47aa609f38fdc1aa7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915537803646701811, guid: 81d99bda54ed80c47aa609f38fdc1aa7, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 169997778938151021, guid: 3097bacf53265e647ad9721e76fabdd7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
