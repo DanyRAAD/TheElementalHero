@@ -52,7 +52,15 @@ public class LanguageManager : MonoBehaviour
         {"abrir cofre","Presiona 'F' Para abrir cofre" },
         {"abrir puerta","Presiona F para abrir puerta" },
         {"llave","¡Ya tienes la llave en tu inventario!" },
-        {"necesitas llave","Necesitas una llave" }
+        {"necesitas llave","Necesitas una llave" },
+        {"vida","Poción de Vida" },
+        {"escudo","Poción de Escudo" },
+        {"comprar","Comprar" },
+        {"vida maxima","¡Tienes vida Máxima!" },
+        {"escudo maximo","¡Tienes escudo Máximo!" },
+        {"sin posiones vida","No tienes posiones de vida" },
+        {"sin posiones escudo","No tienes posiones de escudo" },
+        {"tienda","Tienda" }
     };
 
     public Dictionary<string, string> english = new Dictionary<string, string>()
@@ -99,7 +107,15 @@ public class LanguageManager : MonoBehaviour
         {"abrir cofre","Press F to open chest" },
         {"abrir puerta","Press F to open door" },
         {"llave","You now have the key in your inventory!" },
-        {"necesitas llave","You need a key" }
+        {"necesitas llave","You need a key" },
+        {"vida","Life Potion" },
+        {"escudo","Shield Potion" },
+        {"comprar","Buy" },
+        {"vida maxima","You have Maximum Life!" },
+        {"escudo maximo","You have Maximum Shield!" },
+        {"sin posiones vida","You have no life posions" },
+        {"sin posiones escudo","You have no shield posions" },
+        {"tienda","Shop"}
     };
 
     private void Awake()
