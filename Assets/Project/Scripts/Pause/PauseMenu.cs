@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject pausePanel;
     public GameObject confirmationPanel;
 
-    public static bool isPaused = false; // Para que otros scripts puedan consultarlo
+    public PlayerHealth playerHealth;             
+    public CheckpointManager checkpointManager;  
+    public Transform playerTransform;              
+    public static bool isPaused = false;
 
     void Update()
     {
@@ -23,7 +27,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
 
-        // Mostrar y desbloquear el cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -35,7 +38,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
 
-        // Ocultar y bloquear el cursor al centro
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -54,6 +56,17 @@ public class PauseMenu : MonoBehaviour
 
     public void SaveGame()
     {
-        Debug.Log("Guardar juego (función pendiente)");
+        SaveData data = new SaveData();
+
+        data.playerPosition = playerTransform.position;
+        data.playerRotation = playerTransform.rotation;
+        data.playerHealth = Mathf.RoundToInt(playerHealth.currentHealth);
+        data.playerShield = Mathf.RoundToInt(playerHealth.currentShield);
+        data.checkpointID = checkpointManager.GetLastCheckpointID();
+        
+
+        SaveLoadManager.instance.SaveGame(1, data);
+
+        Debug.Log("Juego guardado correctamente.");
     }
 }

@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Combat")]
     public float meleeAttackRange = 2f;
-    public float rockThrowRange = 10f;
+    public float rockThrowRange = 20f;
     public float meleeAttackDamage = 10f;
     public float rockThrowDamage = 15f;
 

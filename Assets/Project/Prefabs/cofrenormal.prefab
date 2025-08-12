@@ -72,10 +72,12 @@ MonoBehaviour:
   sonidoAbrirCofre: {fileID: 8300000, guid: 43950aaf8ad6fe6498b925195b5b9282, type: 3}
   sonidoMonedas: {fileID: 8300000, guid: 350a8c43bcfdc524e969abcfbf3a4390, type: 3}
   monedasParticulas: {fileID: 3564921325482541331}
-  textoMonedasHUD: {fileID: 0}
-  monedasMin: 50
-  monedasMax: 100
+  monedasMinComun: 50
+  monedasMaxComun: 100
+  monedasMinSupremo: 100
+  monedasMaxSupremo: 300
   monedas3D: {fileID: 0}
+  economy: {fileID: 0}
 --- !u!1 &6663804048356372891
 GameObject:
   m_ObjectHideFlags: 0
@@ -4917,6 +4919,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6937831314443004214}
     m_Modifications:
+    - target: {fileID: 2198495927690189185, guid: 6c2b6b52e4c04df40bf2ca695dda9183, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 77690cf67d0ddf8458eb88caa352acdc, type: 2}
+    - target: {fileID: 2268258009902858685, guid: 6c2b6b52e4c04df40bf2ca695dda9183, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 77690cf67d0ddf8458eb88caa352acdc, type: 2}
+    - target: {fileID: 6456957570396514807, guid: 6c2b6b52e4c04df40bf2ca695dda9183, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 77690cf67d0ddf8458eb88caa352acdc, type: 2}
     - target: {fileID: 8056132577413021009, guid: 6c2b6b52e4c04df40bf2ca695dda9183, type: 3}
       propertyPath: m_Name
       value: CoinsCofre
@@ -5110,7 +5124,9 @@ MonoBehaviour:
   sonidoAbrirCofre: {fileID: 8300000, guid: 43950aaf8ad6fe6498b925195b5b9282, type: 3}
   sonidoMonedas: {fileID: 8300000, guid: 350a8c43bcfdc524e969abcfbf3a4390, type: 3}
   monedasParticulas: {fileID: 3564921325482541331}
-  textoMonedasHUD: {fileID: 0}
-  monedasMin: 50
-  monedasMax: 100
+  monedasMinComun: 50
+  monedasMaxComun: 100
+  monedasMinSupremo: 100
+  monedasMaxSupremo: 300
   monedas3D: {fileID: 5540497384671352858}
+  economy: {fileID: 0}
