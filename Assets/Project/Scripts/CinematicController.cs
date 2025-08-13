@@ -23,11 +23,11 @@ public class CinematicController : MonoBehaviour
 
     void Start()
     {
-        // Selección de idioma desde PlayerPrefs
+        
         string lang = PlayerPrefs.GetInt("language", 0) == 0 ? "ES" : "EN";
         string videoFile = lang == "ES" ? mainCinematic_ES : mainCinematic_EN;
 
-        // Inicia reproducción de cinemática principal
+        
         PlayVideo(videoFile);
 
         skipButton.SetActive(true);
@@ -36,9 +36,7 @@ public class CinematicController : MonoBehaviour
         videoPlayer.loopPointReached += OnVideoEnd;
     }
 
-    /// <summary>
-    /// Reproduce el video desde la carpeta StreamingAssets
-    /// </summary>
+    
     void PlayVideo(string fileName)
     {
         string path = System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
@@ -49,9 +47,7 @@ public class CinematicController : MonoBehaviour
         videoPlayer.Play();
     }
 
-    /// <summary>
-    /// Se llama desde el botón "Skip"
-    /// </summary>
+   
     public void SkipCinematic()
     {
         skipPressed = true;
@@ -59,9 +55,7 @@ public class CinematicController : MonoBehaviour
         ShowCharacterSelection();
     }
 
-    /// <summary>
-    /// Evento al finalizar un video
-    /// </summary>
+
     void OnVideoEnd(VideoPlayer vp)
     {
         if (isMainCinematic && !skipPressed)
@@ -75,9 +69,7 @@ public class CinematicController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Muestra la UI para elegir personaje
-    /// </summary>
+   
     void ShowCharacterSelection()
     {
         skipButton.SetActive(false);
@@ -85,9 +77,6 @@ public class CinematicController : MonoBehaviour
         characterSelectionUI.SetActive(true);
     }
 
-    /// <summary>
-    /// Llamado desde los botones de Kain y Jael
-    /// </summary>
     public void SelectCharacter(string character)
     {
         selectedCharacter = character;

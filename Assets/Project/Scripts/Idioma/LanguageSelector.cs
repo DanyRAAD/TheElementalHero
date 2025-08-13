@@ -14,7 +14,7 @@ public class LanguageSelector : MonoBehaviour
 
     public void OnLanguageChanged(int value)
     {
-        // Vista previa (opcional)
+        
         LanguageManager.Instance.SetLanguage(value);
     }
 

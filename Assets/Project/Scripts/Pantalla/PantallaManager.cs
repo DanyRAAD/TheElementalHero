@@ -6,7 +6,7 @@ public class PantallaManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown dropdown;
 
     private const string MODO_PANTALLA_KEY = "modo_pantalla";
-    private const int DEFAULT_MODO = 0; // Pantalla completa
+    private const int DEFAULT_MODO = 0; 
 
     void Start()
     {
@@ -37,13 +37,13 @@ public class PantallaManager : MonoBehaviour
     {
         switch (modo)
         {
-            case 0: // Pantalla completa
+            case 0: 
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                 break;
-            case 1: // Ventana
+            case 1: 
                 Screen.fullScreenMode = FullScreenMode.Windowed;
                 break;
-            case 2: // Sin bordes
+            case 2: 
                 Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
                 break;
             default:

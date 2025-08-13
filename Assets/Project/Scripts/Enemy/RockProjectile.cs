@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class RockProjectile : MonoBehaviour
 {
-    public float speed = 10f;                // Velocidad de la roca
-    public float damage = 7f;                // Daño que hará
-    public float lifetime = 5f;              // Tiempo para auto-destruirse si no impacta
+    public float speed = 10f;                
+    public float damage = 7f;                
+    public float lifetime = 5f;              
 
     private Transform target;
 
@@ -12,8 +12,8 @@ public class RockProjectile : MonoBehaviour
     public void SetTarget(Transform targetTransform)
     {
         target = targetTransform;
-        // Apunta inmediatamente hacia la cabeza
-        Vector3 targetPosition = target.position + Vector3.up * 1.5f; // Ajusta según la altura de la cabeza
+        
+        Vector3 targetPosition = target.position + Vector3.up * 1.5f; 
         Vector3 direction = (targetPosition - transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(direction);
     }
@@ -26,10 +26,10 @@ public class RockProjectile : MonoBehaviour
             return;
         }
 
-        // Mover hacia adelante
+        
         transform.position += transform.forward * speed * Time.deltaTime;
 
-        // Opcional: destruir después de un tiempo
+        
         lifetime -= Time.deltaTime;
         if (lifetime <= 0f)
         {
@@ -50,7 +50,7 @@ public class RockProjectile : MonoBehaviour
         }
         else if (!other.CompareTag("Enemy"))
         {
-            // Destruir roca al chocar contra otros objetos que no sean enemigos (suelo, paredes)
+            
             Destroy(gameObject);
         }
     }

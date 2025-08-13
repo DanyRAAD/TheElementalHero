@@ -13,7 +13,7 @@ public class BaculoAdherente : MonoBehaviour
         }
     }
 
-    // Método para pegar el báculo a la mano (o brazo)
+    
     private void PegarABrazo(Transform playerTransform)
     {
         Transform mano = playerTransform.Find("mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand");
@@ -29,20 +29,20 @@ public class BaculoAdherente : MonoBehaviour
         }
     }
 
-    // Método para obtener el estado actual (para guardar)
+    
     public bool GetEstadoAdherido()
     {
         return adherido;
     }
 
-    // Método para restaurar el estado al cargar
+   
     public void SetEstadoAdherido(bool estado)
     {
         adherido = estado;
 
         if (adherido)
         {
-            // Buscamos el jugador y pegamos el báculo a la mano
+            
             GameObject player = GameObject.FindWithTag("Player");
             if (player != null)
             {
@@ -51,7 +51,7 @@ public class BaculoAdherente : MonoBehaviour
         }
         else
         {
-            // Si no está adherido, soltamos el báculo
+            
             transform.SetParent(null);
             GetComponent<Collider>().enabled = true;
         }

@@ -26,7 +26,7 @@ public class PotionInventory : MonoBehaviour
     {
         ActualizarHUD();
 
-        // Asegurarse que todos los textos de advertencia estén ocultos al inicio
+        
         textoVidaMaximo.gameObject.SetActive(false);
         textoEscudoMaximo.gameObject.SetActive(false);
         textoSinPocionesVida.gameObject.SetActive(false);
@@ -107,7 +107,7 @@ public class PotionInventory : MonoBehaviour
 
     void MostrarMensaje(TextMeshProUGUI texto)
     {
-        // Primero ocultar todos los textos de advertencia
+        
         textoVidaMaximo.gameObject.SetActive(false);
         textoEscudoMaximo.gameObject.SetActive(false);
         textoSinPocionesVida.gameObject.SetActive(false);

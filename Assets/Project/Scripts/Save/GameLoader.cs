@@ -1,4 +1,4 @@
-using UnityEditor.Overlays;
+//using UnityEditor.Overlays;
 using UnityEngine;
 
 public class GameLoader : MonoBehaviour
@@ -48,15 +48,15 @@ public class GameLoader : MonoBehaviour
                     potionInventory.SetPocionesEscudo(data.pocionesEscudo);
                 }
 
-                //Enemigo
+               
 
               
 
                 if (data != null)
                 {
-                    // Cargar otros datos normales
+                    
 
-                    // Cargar enemigos
+                    
                     foreach (EnemySaveData enemyData in data.enemies)
                     {
                         GameObject enemyGO = GameObject.Find(enemyData.enemyID);
@@ -66,20 +66,18 @@ public class GameLoader : MonoBehaviour
                             if (enemy != null)
                             {
                                 enemy.health = enemyData.health;
-                                enemy.SetDeadState(enemyData.isDead);  // Usa el método que implementaste
+                                enemy.SetDeadState(enemyData.isDead);  
                             }
                         }
                     }
                 }
 
-                //cofres
+                
                
 
                 if (data != null)
                 {
-                    // Cargar otros datos...
-
-                    // Cargar estado de cofres
+                    
                     foreach (ChestSaveData chestData in data.chests)
                     {
                         GameObject chestGO = GameObject.Find(chestData.chestID);
@@ -91,7 +89,7 @@ public class GameLoader : MonoBehaviour
                                 cofre.cofreAbierto = chestData.isOpen;
                                 if (chestData.isOpen)
                                 {
-                                    // Asegurarte que visualmente se vea abierto
+                                    
                                     cofre.animatorCofre.SetBool("isOpen", true);
                                     cofre.mensajeUI.SetActive(false);
                                 }

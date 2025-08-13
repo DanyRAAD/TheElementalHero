@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonController : MonoBehaviour
 {
@@ -24,7 +23,7 @@ public class ThirdPersonController : MonoBehaviour
     private float lastDirChangeTime = 0f;
     private float dirChangeDelay = 0.15f;
 
-    //variables para doble salto 
+    // Doble salto
     public float jumpForce = 5f;
     private int jumpCount = 0;
     private int maxJumps = 2;
@@ -32,26 +31,53 @@ public class ThirdPersonController : MonoBehaviour
     private bool isGrounded;
     public Transform groundCheck;
     public float groundDistance = 0.3f;
-  
 
+    
+    [Header("Animaciones que bloquean movimiento")]
+    [SerializeField] private string[] animacionesQueBloqueanMovimiento;
+    private bool movimientoBloqueado;
 
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor al centro
-        Cursor.visible = false;                   // Oculta el cursor
-
-
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
     {
+        var stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
+
+        
+        movimientoBloqueado = false;
+        foreach (string animName in animacionesQueBloqueanMovimiento)
+        {
+            if (stateInfo.IsName(animName))
+            {
+                movimientoBloqueado = true;
+                break;
+            }
+        }
+
+        
+        if (movimientoBloqueado)
+        {
+            isGrounded = characterController.isGrounded;
+            if (isGrounded && velocity.y < 0)
+                velocity.y = -2f;
+
+            velocity.y += gravity * Time.deltaTime;
+            characterController.Move(new Vector3(0, velocity.y, 0) * Time.deltaTime);
+            return;
+        }
+
+        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         Vector3 inputDir = new Vector3(horizontal, 0f, vertical).normalized;
 
-        // Suaviza cambios bruscos de dirección
+        
         if (Vector3.Angle(inputDir, currentInputDir) > 45f)
         {
             if (Time.time - lastDirChangeTime > dirChangeDelay)
@@ -70,11 +96,11 @@ public class ThirdPersonController : MonoBehaviour
             lastDirChangeTime = Time.time;
         }
 
-        // Checa si Ctrl está presionado (solo para animación)
+        
         bool isCrouching = Input.GetKey(KeyCode.LeftControl);
         playerAnimator.SetBool("IsCrouching", isCrouching);
 
-        // Movimiento horizontal (X-Z)
+        
         Vector3 horizontalMove = Vector3.zero;
         if (currentInputDir.magnitude >= 0.1f)
         {
@@ -99,7 +125,7 @@ public class ThirdPersonController : MonoBehaviour
             horizontalMove = moveDirection * finalSpeed;
         }
 
-        // Comprobación de si está en el suelo
+        
         isGrounded = characterController.isGrounded;
         if (isGrounded && velocity.y < 0)
         {
@@ -107,7 +133,7 @@ public class ThirdPersonController : MonoBehaviour
             jumpCount = 0;
         }
 
-        // Saltar y doble salto
+        
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
             velocity.y = jumpForce;
@@ -115,14 +141,14 @@ public class ThirdPersonController : MonoBehaviour
             playerAnimator.SetTrigger("Jump");
         }
 
-        // Aplicar gravedad
+        
         velocity.y += gravity * Time.deltaTime;
 
-        // Mover personaje (sumando horizontal + vertical)
+        
         Vector3 totalMove = horizontalMove + new Vector3(0, velocity.y, 0);
         characterController.Move(totalMove * Time.deltaTime);
 
-        // Animator
+        
         float animSpeed = currentInputDir.magnitude;
         if (Input.GetKey(KeyCode.LeftShift)) animSpeed *= runMultiplier;
 
@@ -131,12 +157,10 @@ public class ThirdPersonController : MonoBehaviour
         playerAnimator.SetFloat("Speed", animSpeed, 0.15f, Time.deltaTime);
         playerAnimator.SetFloat("Direction", horizontal, 0.15f, Time.deltaTime);
 
-        var stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
         if (Input.GetKeyDown(KeyCode.A) && stateInfo.IsName("Idle"))
             playerAnimator.SetTrigger("Left");
 
         if (Input.GetKeyDown(KeyCode.D) && stateInfo.IsName("Idle"))
             playerAnimator.SetTrigger("Right");
     }
-
 }

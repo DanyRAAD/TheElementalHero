@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        // Estado de combate basado en distancia
+        
         if (distanceToPlayer <= meleeAttackRange)
         {
             agent.isStopped = true;
@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            // Volver a patrullar
+            
             agent.isStopped = false;
             Patrol();
         }
@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour
 
         animator.SetTrigger("IsMeleeAttack");
 
-        // Detectar jugador en rango y hacer daño
+        
         Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * meleeAttackRange, 1.5f);
         foreach (var hit in hits)
         {
@@ -126,7 +126,7 @@ public class EnemyController : MonoBehaviour
 
         animator.SetTrigger("IsGolemMagicAttack");
 
-        // Lanzar roca con retraso para sincronizar con animación
+        
         StartCoroutine(SpawnAndThrowRock());
     }
 
@@ -144,7 +144,7 @@ public class EnemyController : MonoBehaviour
                 projectile.SetTarget(player.transform);
             }
 
-            // Evitar colisión con el golem
+            
             Collider rockCollider = rock.GetComponent<Collider>();
             Collider golemCollider = GetComponent<Collider>();
             if (rockCollider != null && golemCollider != null)
@@ -179,7 +179,7 @@ public class EnemyController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // para debug y ver alcance de ataques en editor
+    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

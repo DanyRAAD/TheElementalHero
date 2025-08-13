@@ -11,7 +11,7 @@ public class Confirmation : MonoBehaviour
         if (action == Action.ExitToMenu)
         {
             Time.timeScale = 1f;
-            SceneManager.LoadScene("MainMenu"); // Asegúrate de que el nombre coincida
+            SceneManager.LoadScene("MainMenu"); 
         }
         else if (action == Action.QuitGame)
         {

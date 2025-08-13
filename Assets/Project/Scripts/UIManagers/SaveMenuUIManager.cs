@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;  // Necesario para Button
+using UnityEngine.UI;  
 
 public class SaveMenuUIManager : MonoBehaviour
 {
     public GameObject panelSaveMenu;
 
-    public Button continuarButton; // Asignar en Inspector el botón Continuar
+    public Button continuarButton; 
 
     private void Start()
     {
-        // Verifica si hay partida guardada en slot 1
+        
         bool hayPartidaGuardada = SaveLoadManager.instance.SaveExists(1);
         continuarButton.interactable = hayPartidaGuardada;
     }
@@ -23,7 +23,7 @@ public class SaveMenuUIManager : MonoBehaviour
     public void IrLoadGame()
     {
         panelSaveMenu.SetActive(false);
-        // Aquí puedes agregar lógica para mostrar panel de carga si tienes
+        
     }
 
     public void ReturnSaveMenu()
@@ -41,7 +41,7 @@ public class SaveMenuUIManager : MonoBehaviour
     {
         if (SaveLoadManager.instance != null && SaveLoadManager.instance.SaveExists(1))
         {
-            GameState.cargarPartidaGuardada = true; // Cargar datos guardados
+            GameState.cargarPartidaGuardada = true; 
             SceneManager.LoadScene("RuinasAntiguas");
         }
         else

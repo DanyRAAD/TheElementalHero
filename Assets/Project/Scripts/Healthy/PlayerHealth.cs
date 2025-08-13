@@ -63,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // Obtener posición del último checkpoint
+        
         Vector3 respawnPos = CheckpointManager.instance.GetLastCheckpointPosition();
 
         if (respawnPos != Vector3.zero)
@@ -73,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            // No hay checkpoint, reinicia la escena
+            
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
@@ -85,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetHealth((int)currentHealth);
         shieldBar.SetHealth((int)currentShield);
 
-        // Aquí puedes reiniciar animaciones o estados que necesites
+        
         animator.ResetTrigger("IsDead");
         isDead = false;
     }

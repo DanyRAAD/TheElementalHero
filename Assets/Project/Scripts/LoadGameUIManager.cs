@@ -8,7 +8,7 @@ public class LoadGameUIManager : MonoBehaviour
     public Transform contentPanel;
     public GameObject slotPrefab;
 
-    // Simulación de partidas guardadas
+    
     private List<string> partidasSimuladas = new List<string> {
         "Partida 1", "Partida 2", "Partida 3", "Partida 4", "Partida 5"
     };
@@ -22,7 +22,7 @@ public class LoadGameUIManager : MonoBehaviour
     {
         foreach (Transform hijo in contentPanel)
         {
-            Destroy(hijo.gameObject); // Limpia anteriores
+            Destroy(hijo.gameObject); 
         }
 
         foreach (string nombre in partidasSimuladas)

@@ -4,7 +4,7 @@ using TMPro;
 
 public class DropdownLocalizer : MonoBehaviour
 {
-    public string[] optionKeys; // Claves para cada opción, en orden
+    public string[] optionKeys; 
     private TMP_Dropdown dropdown;
 
     void Awake()
@@ -16,7 +16,7 @@ public class DropdownLocalizer : MonoBehaviour
     {
         if (LanguageManager.Instance == null) return;
 
-        // Asegura que el componente TMP_Dropdown esté asignado, incluso si Awake() no se ejecutó aún
+        
         if (dropdown == null)
         {
             dropdown = GetComponent<TMP_Dropdown>();

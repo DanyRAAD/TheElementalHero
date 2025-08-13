@@ -15,14 +15,14 @@ public class EnemyHealth : MonoBehaviour
         enemyController = GetComponent<EnemyController>();
     }
 
-    // isMeleeAttack indica si el daño es de tipo melee para ajustar daño a golem
+    
     public void TakeDamage(float amount, bool isMeleeAttack = false)
     {
         if (isDead) return;
 
         if (enemyType == EnemyType.Golem && isMeleeAttack)
         {
-            amount = 5f; // Reduce daño melee al golem
+            amount = 5f; 
         }
 
         health -= amount;
@@ -40,7 +40,7 @@ public class EnemyHealth : MonoBehaviour
         {
             if (enemyController != null)
             {
-                enemyController.Die();  // Esto debería desactivar o animar la muerte
+                enemyController.Die();  
             }
             else
             {
@@ -49,15 +49,15 @@ public class EnemyHealth : MonoBehaviour
                 {
                     anim.SetTrigger("IsDying");
                 }
-                gameObject.SetActive(false);  // En lugar de destruir, para que quede oculto
+                gameObject.SetActive(false);  
             }
         }
         else
         {
-            // Reiniciar vida, animaciones o estados si es necesario para enemigo vivo
-            health = 100f; // O el valor que corresponda
+            
+            health = 100f; 
             gameObject.SetActive(true);
-            // Reiniciar animaciones o lógica que tengas
+            
         }
     }
 

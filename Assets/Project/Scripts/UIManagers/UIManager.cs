@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject panelSonido;
     public GameObject panelControles;
 
-    // NUEVO: Panel de confirmación de salida
+  
     public GameObject panelConfirmacionSalida;
 
     public void IniciarJuego()
@@ -40,23 +40,23 @@ public class UIManager : MonoBehaviour
         panelInicial.SetActive(true);
     }
 
-    // NUEVO: Abre panel de confirmación
+   
     public void ConfirmarSalida()
     {
-        panelInicial.SetActive(false); // Oculta los botones del menú
-        panelConfirmacionSalida.SetActive(true); // Muestra la confirmación
+        panelInicial.SetActive(false); 
+        panelConfirmacionSalida.SetActive(true); 
     }
 
 
-    // NUEVO: Cierra el popup sin salir
+    
     public void CancelarSalida()
     {
-        panelConfirmacionSalida.SetActive(false); // Oculta la confirmación
-        panelInicial.SetActive(true); // Vuelve a mostrar el menú
+        panelConfirmacionSalida.SetActive(false); 
+        panelInicial.SetActive(true); 
     }
 
 
-    // NUEVO: Sale del juego
+    
     public void SalirDelJuego()
     {
         Debug.Log("Saliendo del juego...");

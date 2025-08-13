@@ -8,7 +8,7 @@ public class VolumenUIManager : MonoBehaviour
 
     void Start()
     {
-        // Inicializar sliders con valores guardados
+        
         musicSlider.value = PlayerPrefs.GetFloat("music_volume", 0.3f);
         sfxSlider.value = PlayerPrefs.GetFloat("sfx_volume", 0.3f);
 
@@ -20,7 +20,7 @@ public class VolumenUIManager : MonoBehaviour
             UIAudioManager.Instance?.SetSFXVolume(value);
         });
 
-        // Aplicar valores iniciales
+        
         UIAudioManager.Instance?.SetMusicVolume(musicSlider.value);
         UIAudioManager.Instance?.SetSFXVolume(sfxSlider.value);
     }

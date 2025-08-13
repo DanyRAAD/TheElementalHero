@@ -16,11 +16,11 @@ public class MusicManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Hace persistente este objeto
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
-            Destroy(gameObject); // Destruye duplicados
+            Destroy(gameObject); 
         }
     }
 

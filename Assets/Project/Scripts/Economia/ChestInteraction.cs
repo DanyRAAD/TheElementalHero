@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -28,7 +29,7 @@ public class ChestInteraction : MonoBehaviour
     private bool jugadorCerca = false;
     public bool cofreAbierto = false;
 
-    public string chestID; 
+    public string chestID;
 
 
     void Start()
@@ -67,7 +68,7 @@ public class ChestInteraction : MonoBehaviour
 
         int recompensa = 0;
 
-        // Verificar tag para asignar recompensa
+        
         if (gameObject.CompareTag("CofreComun"))
         {
             recompensa = Random.Range(monedasMinComun, monedasMaxComun + 1);
@@ -78,7 +79,7 @@ public class ChestInteraction : MonoBehaviour
         }
         else
         {
-            // Si no tiene tag, le puedes asignar valor por defecto o 0
+            
             recompensa = monedasMinComun;
         }
 

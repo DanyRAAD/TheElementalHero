@@ -11,7 +11,7 @@ public class BrilloManager : MonoBehaviour
 
     private float brillo;
 
-    private const float BRILLO_PREDETERMINADO = 0.6f; // 60% de claridad (40% de oscurecimiento)
+    private const float BRILLO_PREDETERMINADO = 0.6f; 
     private const string BRILLO_KEY = "brillo";
 
     void Start()

@@ -8,7 +8,7 @@ public class MagicProjectile : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, lifetime); // Desaparece tras X segundos si no choca
+        Destroy(gameObject, lifetime); 
     }
 
     void Update()
@@ -18,24 +18,24 @@ public class MagicProjectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Evita dañar al jugador o a sí mismo
+        
         if (other.CompareTag("Player")) return;
 
-        // Intentar hacer daño
+        
         EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
         if (enemyHealth != null && enemyHealth.enemyType == EnemyType.Golem)
         {
-            enemyHealth.TakeDamage(damage, false); // false = ataque mágico
+            enemyHealth.TakeDamage(damage, false); 
         }
 
-        // Daño a objetos destructibles
+        
         DestructibleObject destructible = other.GetComponent<DestructibleObject>();
         if (destructible != null)
         {
             destructible.TakeDamage(damage);
         }
 
-        // Destruir siempre que colisione con algo
+        
         Destroy(gameObject);
     }
 }

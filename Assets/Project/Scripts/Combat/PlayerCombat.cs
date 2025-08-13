@@ -15,9 +15,9 @@ public class PlayerCombat : MonoBehaviour
     private float lastAttackTime = -1f;
 
     
-    public GameObject magicProjectilePrefab;       // Prefab del proyectil
-    public Transform magicSpawnPoint;              // Punto de origen (en la punta del b�culo)
-    public float projectileSpeed = 20f;            // Velocidad del proyectil
+    public GameObject magicProjectilePrefab;       
+    public Transform magicSpawnPoint;              
+    public float projectileSpeed = 20f;            
 
 
     void Update()
