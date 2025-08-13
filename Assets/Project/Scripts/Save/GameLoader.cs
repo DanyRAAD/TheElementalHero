@@ -1,3 +1,4 @@
+using UnityEditor.Overlays;
 using UnityEngine;
 
 public class GameLoader : MonoBehaviour
@@ -27,6 +28,80 @@ public class GameLoader : MonoBehaviour
                     playerHealth.shieldBar.SetHealth(data.playerShield);
                 }
 
+                // Restaurar estado báculo
+                BaculoAdherente baculo = FindObjectOfType<BaculoAdherente>();
+                if (baculo != null)
+                {
+                    baculo.SetEstadoAdherido(data.baculoAdherido);
+                }
+
+                PlayerEconomy economia = playerTransform.GetComponent<PlayerEconomy>();
+                if (economia != null)
+                {
+                    economia.SetMonedas(data.monedas);
+                }
+                PotionInventory potionInventory = playerTransform.GetComponent<PotionInventory>();
+
+                if (potionInventory != null)
+                {
+                    potionInventory.SetPocionesVida(data.pocionesVida);
+                    potionInventory.SetPocionesEscudo(data.pocionesEscudo);
+                }
+
+                //Enemigo
+
+              
+
+                if (data != null)
+                {
+                    // Cargar otros datos normales
+
+                    // Cargar enemigos
+                    foreach (EnemySaveData enemyData in data.enemies)
+                    {
+                        GameObject enemyGO = GameObject.Find(enemyData.enemyID);
+                        if (enemyGO != null)
+                        {
+                            EnemyHealth enemy = enemyGO.GetComponent<EnemyHealth>();
+                            if (enemy != null)
+                            {
+                                enemy.health = enemyData.health;
+                                enemy.SetDeadState(enemyData.isDead);  // Usa el método que implementaste
+                            }
+                        }
+                    }
+                }
+
+                //cofres
+               
+
+                if (data != null)
+                {
+                    // Cargar otros datos...
+
+                    // Cargar estado de cofres
+                    foreach (ChestSaveData chestData in data.chests)
+                    {
+                        GameObject chestGO = GameObject.Find(chestData.chestID);
+                        if (chestGO != null)
+                        {
+                            ChestInteraction cofre = chestGO.GetComponent<ChestInteraction>();
+                            if (cofre != null)
+                            {
+                                cofre.cofreAbierto = chestData.isOpen;
+                                if (chestData.isOpen)
+                                {
+                                    // Asegurarte que visualmente se vea abierto
+                                    cofre.animatorCofre.SetBool("isOpen", true);
+                                    cofre.mensajeUI.SetActive(false);
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
                 Debug.Log("Partida cargada desde checkpoint: " + data.checkpointID);
             }
             else
@@ -37,7 +112,7 @@ public class GameLoader : MonoBehaviour
         else
         {
             Debug.Log("Nueva partida iniciada sin cargar datos previos.");
-            
         }
     }
+
 }

@@ -10,7 +10,7 @@ public class SaveLoadManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Que no se destruya al cambiar escena
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {

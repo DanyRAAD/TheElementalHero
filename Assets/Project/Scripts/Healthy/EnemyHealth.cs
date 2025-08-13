@@ -7,7 +7,7 @@ public class EnemyHealth : MonoBehaviour
     public EnemyType enemyType;
     public float health = 100f;
 
-    private bool isDead = false;
+    public bool isDead = false;
     private EnemyController enemyController;
 
     void Awake()
@@ -32,6 +32,34 @@ public class EnemyHealth : MonoBehaviour
             Die();
         }
     }
+    public void SetDeadState(bool dead)
+    {
+        isDead = dead;
+
+        if (isDead)
+        {
+            if (enemyController != null)
+            {
+                enemyController.Die();  // Esto debería desactivar o animar la muerte
+            }
+            else
+            {
+                Animator anim = GetComponent<Animator>();
+                if (anim != null)
+                {
+                    anim.SetTrigger("IsDying");
+                }
+                gameObject.SetActive(false);  // En lugar de destruir, para que quede oculto
+            }
+        }
+        else
+        {
+            // Reiniciar vida, animaciones o estados si es necesario para enemigo vivo
+            health = 100f; // O el valor que corresponda
+            gameObject.SetActive(true);
+            // Reiniciar animaciones o lógica que tengas
+        }
+    }
 
     void Die()
     {
@@ -43,14 +71,14 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            // Por si no hay EnemyController, solo dispara animación y desactiva
             Animator anim = GetComponent<Animator>();
             if (anim != null)
             {
                 anim.SetTrigger("IsDying");
             }
-            // Desactivar el gameobject después de un tiempo para que se vea la animación
-            Destroy(gameObject, 3.724f);
+            // Desactiva en lugar de destruir para mantener referencia en guardado
+            gameObject.SetActive(false);
         }
     }
+
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using System.Collections; // Necesario para usar IEnumerator
+using System.Collections; 
 
 public class BridgeInteraction : MonoBehaviour
 {
@@ -101,7 +101,7 @@ public class BridgeInteraction : MonoBehaviour
             piezasRecolectadas++;
             ActualizarTextoPiezas();
         }
-        // Restablecer la velocidad al terminar
+        
         if (playerAnimator != null)
             playerAnimator.speed = 1.0f;
     }

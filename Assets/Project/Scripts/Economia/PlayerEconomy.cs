@@ -33,4 +33,14 @@ public class PlayerEconomy : MonoBehaviour
         if (textoMonedas)
             textoMonedas.text = monedas.ToString();
     }
+    public int GetMonedas()
+    {
+        return monedas;
+    }
+
+    public void SetMonedas(int cantidad)
+    {
+        monedas = cantidad;
+        ActualizarHUD();
+    }
 }

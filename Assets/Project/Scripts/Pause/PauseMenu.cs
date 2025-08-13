@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -63,7 +64,54 @@ public class PauseMenu : MonoBehaviour
         data.playerHealth = Mathf.RoundToInt(playerHealth.currentHealth);
         data.playerShield = Mathf.RoundToInt(playerHealth.currentShield);
         data.checkpointID = checkpointManager.GetLastCheckpointID();
-        
+        BaculoAdherente baculo = FindObjectOfType<BaculoAdherente>();
+        data.baculoAdherido = baculo != null && baculo.GetEstadoAdherido();
+        PlayerEconomy economia = playerTransform.GetComponent<PlayerEconomy>();
+        if (economia != null)
+        {
+            data.monedas = economia.GetMonedas();
+        }
+        PotionInventory potionInventory = playerTransform.GetComponent<PotionInventory>();
+
+        if (potionInventory != null)
+        {
+            data.pocionesVida = potionInventory.GetPocionesVida();
+            data.pocionesEscudo = potionInventory.GetPocionesEscudo();
+        }
+
+        EnemyHealth[] allEnemies = GameObject.FindObjectsOfType<EnemyHealth>();
+
+        data.enemies.Clear();
+
+        foreach (EnemyHealth enemy in allEnemies)
+        {
+            EnemySaveData enemyData = new EnemySaveData
+            {
+                enemyID = enemy.gameObject.name,  
+                health = enemy.health,
+                isDead = enemy.isDead
+            };
+            data.enemies.Add(enemyData);
+        }
+
+      
+        // Guardar estado de cofres
+        ChestInteraction[] cofres = GameObject.FindObjectsOfType<ChestInteraction>();
+        data.chests.Clear();
+
+        foreach (ChestInteraction cofre in cofres)
+        {
+            ChestSaveData chestData = new ChestSaveData
+            {
+                chestID = cofre.chestID,
+                isOpen = cofre.cofreAbierto
+            };
+            data.chests.Add(chestData);
+        }
+
+
+
+
 
         SaveLoadManager.instance.SaveGame(1, data);
 

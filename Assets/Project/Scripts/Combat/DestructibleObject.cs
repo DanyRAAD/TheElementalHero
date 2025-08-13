@@ -4,7 +4,7 @@ using System.Collections;
 public class DestructibleObject : MonoBehaviour
 {
     public float health = 50f;
-    public float damageFlashDuration = 0.5f; // tiempo que dura el parpadeo
+    public float damageFlashDuration = 0.5f; 
     public Color damageColor = Color.red;
 
     private Material objectMaterial;
@@ -15,7 +15,7 @@ public class DestructibleObject : MonoBehaviour
         Renderer rend = GetComponent<Renderer>();
         if (rend != null)
         {
-            objectMaterial = rend.material;  // importante: instancia material para que no afecte a otros objetos que usan el mismo material
+            objectMaterial = rend.material;  
             originalColor = objectMaterial.color;
         }
     }
@@ -29,7 +29,7 @@ public class DestructibleObject : MonoBehaviour
         }
         else
         {
-            // Opcional: puedes hacer un parpadeo de daño también cuando aún no muere
+            
             StartCoroutine(DamageFlash());
         }
     }
@@ -47,7 +47,7 @@ public class DestructibleObject : MonoBehaviour
     {
         if (objectMaterial != null)
         {
-            // Parpadea rojo rápido antes de destruir
+            
             for (int i = 0; i < 3; i++)
             {
                 objectMaterial.color = damageColor;

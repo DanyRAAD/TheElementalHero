@@ -126,4 +126,26 @@ public class PotionInventory : MonoBehaviour
         yield return new WaitForSeconds(duracionMensaje);
         texto.gameObject.SetActive(false);
     }
+
+    public int GetPocionesVida()
+    {
+        return pocionesVida;
+    }
+
+    public int GetPocionesEscudo()
+    {
+        return pocionesEscudo;
+    }
+
+    public void SetPocionesVida(int cantidad)
+    {
+        pocionesVida = cantidad;
+        ActualizarHUD();
+    }
+
+    public void SetPocionesEscudo(int cantidad)
+    {
+        pocionesEscudo = cantidad;
+        ActualizarHUD();
+    }
 }

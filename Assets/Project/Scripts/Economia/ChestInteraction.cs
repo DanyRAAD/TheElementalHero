@@ -26,7 +26,10 @@ public class ChestInteraction : MonoBehaviour
     public PlayerEconomy economy;
 
     private bool jugadorCerca = false;
-    private bool cofreAbierto = false;
+    public bool cofreAbierto = false;
+
+    public string chestID; 
+
 
     void Start()
     {
@@ -104,4 +107,11 @@ public class ChestInteraction : MonoBehaviour
             mensajeUI.SetActive(false);
         }
     }
+    public void SetCofreEstado(bool abierto)
+    {
+        cofreAbierto = abierto;
+        animatorCofre.SetBool("isOpen", abierto);
+        mensajeUI.SetActive(!abierto);
+    }
+
 }

@@ -26,7 +26,7 @@ public class ShopSystem : MonoBehaviour
     {
         panelTienda.SetActive(false);
         BloquearMouse();
-        Time.timeScale = 1f;  // Aseguramos que el tiempo esté corriendo al iniciar
+        Time.timeScale = 1f;  
     }
 
     void Update()

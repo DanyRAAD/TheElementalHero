@@ -60,7 +60,9 @@ public class LanguageManager : MonoBehaviour
         {"escudo maximo","¡Tienes escudo Máximo!" },
         {"sin posiones vida","No tienes posiones de vida" },
         {"sin posiones escudo","No tienes posiones de escudo" },
-        {"tienda","Tienda" }
+        {"tienda","Tienda" },
+        {"destruir","Necesitas destruir todos los objetos para continuar" },
+        {"final","Próximo nivel muy pronto, espéralo" }
     };
 
     public Dictionary<string, string> english = new Dictionary<string, string>()
@@ -115,7 +117,9 @@ public class LanguageManager : MonoBehaviour
         {"escudo maximo","You have Maximum Shield!" },
         {"sin posiones vida","You have no life posions" },
         {"sin posiones escudo","You have no shield posions" },
-        {"tienda","Shop"}
+        {"tienda","Shop"},
+        {"destruir","You need to destroy all objects to continue."},
+        {"final","Next level coming soon, wait for it"}
     };
 
     private void Awake()
@@ -171,17 +175,17 @@ public class LanguageManager : MonoBehaviour
 
     public void ResetIdioma()
     {
-        int defaultIndex = 0; // Español por defecto
+        int defaultIndex = 0; 
 
         PlayerPrefs.SetInt("language", defaultIndex);
         PlayerPrefs.Save();
 
         if (languageDropdown != null)
         {
-            languageDropdown.value = defaultIndex; // Actualiza el Dropdown visualmente
+            languageDropdown.value = defaultIndex; 
         }
 
-        ApplyLanguage(); // Aplica la traducción a todos los textos
+        ApplyLanguage(); 
     }
 
 
