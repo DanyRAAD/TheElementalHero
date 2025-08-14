@@ -62,7 +62,16 @@ public class LanguageManager : MonoBehaviour
         {"sin posiones escudo","No tienes posiones de escudo" },
         {"tienda","Tienda" },
         {"destruir","Necesitas destruir todos los objetos para continuar" },
-        {"final","Próximo nivel muy pronto, espéralo" }
+        {"final","Próximo nivel muy pronto, espéralo" },
+        {"movimiento","Usa WASD para moverte por el mundo." },
+        {"agachar","Presiona Espacio para saltar y Ctrl izquierdo para agacharte." },
+        {"baculo","¡Ve hacia el báculo para recogerlo!" },
+        {"magia","Ahora que tienes el báculo, presiona Click izquierdo para disparar magia y derrotar enemigos." },
+        {"cofre","Dirígete al cofre y ábrelo para obtener recompensas." },
+        {"tienda abrir","Presiona T para abrir la tienda y comprar pociones." },
+        {"tienda cerrar","Presiona T nuevamente para cerrar la tienda." },
+        {"posion","Usa 1 para consumir una poción de vida y 2 para consumir una poción de escudo." },
+        {"completado","¡Bien hecho! Has completado el tutorial. Explora y disfruta las mecánicas del juego." }
     };
 
     public Dictionary<string, string> english = new Dictionary<string, string>()
@@ -119,7 +128,17 @@ public class LanguageManager : MonoBehaviour
         {"sin posiones escudo","You have no shield posions" },
         {"tienda","Shop"},
         {"destruir","You need to destroy all objects to continue."},
-        {"final","Next level coming soon, wait for it"}
+        {"final","Next level coming soon, wait for it"},
+        {"movimiento","Use WASD to move around the world." },
+        {"agachar","Press Space to jump and Left Ctrl to crouch." },
+        {"baculo","Go to the staff to pick it up!" },
+        {"magia","Now that you have the staff, press Left Click to fire magic and defeat enemies." },
+        {"cofre","Head to the chest and open it to get rewards." },
+        {"tienda abrir","Press T to open the shop and buy potions." },
+        {"tienda cerrar","Press T again to close the store." },
+        {"posion","Use 1 to consume a health potion and 2 to consume a shield potion." },
+        {"completado","Well done! You've completed the tutorial. Explore and enjoy the game's mechanics." }
+        
     };
 
     private void Awake()
